@@ -1,4 +1,4 @@
-pragma solidity >=0.7.0;
+pragma solidity ^0.5.0;
 
 import "./zombieattack.sol";
 import "./erc721.sol";
@@ -10,11 +10,11 @@ contract ZombieOwnership is ZombieAttack, ERC721 {
 
     mapping (uint => address) zombieApprovals;
 
-    function balanceOf(address _owner) override external view returns (uint256) {
+    function balanceOf(address _owner) external view returns (uint256) {
         return ownerZombieCount[_owner];
     }
 
-    function ownerOf(uint256 _tokenId) override external view returns (address) {
+    function ownerOf(uint256 _tokenId) external view returns (address) {
         return zombieToOwner[_tokenId];
     }
 
@@ -25,12 +25,12 @@ contract ZombieOwnership is ZombieAttack, ERC721 {
         emit Transfer(_from, _to, _tokenId);
     }
 
-    function transferFrom(address _from, address _to, uint256 _tokenId) override external payable {
+    function transferFrom(address _from, address _to, uint256 _tokenId) external payable {
         require (zombieToOwner[_tokenId] == msg.sender || zombieApprovals[_tokenId] == msg.sender);
         _transfer(_from, _to, _tokenId);
     }
 
-    function approve(address _approved, uint256 _tokenId) override external payable {
+    function approve(address _approved, uint256 _tokenId) external payable {
         zombieApprovals[_tokenId] = _approved;
         emit Approval(msg.sender, _approved, _tokenId);
     }
