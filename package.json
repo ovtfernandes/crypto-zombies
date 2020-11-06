@@ -5,16 +5,18 @@
   "main": "index.js",
   "scripts": {
     "compile": "truffle compile",
-    "staging": "truffle migrate --network rinkeby"
+    "staging": "truffle migrate --network rinkeby",
+    "test": "truffle test",
+    "dev-server": "ganache-cli -p 8545"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@truffle/hdwallet-provider": "^1.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@truffle/hdwallet-provider": "^1.1.1",
     "dotenv": "^8.2.0",
+    "ganache-cli": "^6.12.1",
     "truffle": "^5.1.51"
   }
 }
